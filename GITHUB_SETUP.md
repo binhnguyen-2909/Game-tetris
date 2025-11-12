@@ -44,20 +44,83 @@ git push -u origin main
 
 ## Các lệnh Git thường dùng:
 
+### Đẩy code mới lên GitHub (sau khi đã setup):
+
+**Cách 1: Sử dụng script (Khuyến nghị)**
+
+**Windows:**
+```bash
+# Chạy script tự động
+push-to-github.bat
+```
+
+**macOS/Linux:**
+```bash
+# Cấp quyền thực thi
+chmod +x push-to-github.sh
+
+# Chạy script
+./push-to-github.sh
+```
+
+**Cách 2: Chạy thủ công**
+
+```bash
+# 1. Xem trạng thái
+git status
+
+# 2. Thêm tất cả file mới và thay đổi vào staging
+git add .
+
+# 3. Commit với message mô tả
+git commit -m "Mô tả thay đổi của bạn"
+
+# 4. Push lên GitHub
+git push origin main
+```
+
+### Các lệnh Git cơ bản:
+
 ```bash
 # Xem trạng thái
 git status
 
 # Thêm file vào staging
-git add .
+git add .                    # Thêm tất cả
+git add file.txt            # Thêm file cụ thể
 
 # Commit thay đổi
 git commit -m "Mô tả thay đổi"
 
 # Đẩy lên GitHub
-git push
+git push                    # Nếu đã set upstream
+git push origin main        # Push lên branch main
 
 # Lấy code mới từ GitHub
 git pull
+
+# Xem lịch sử commit
+git log
+
+# Xem các remote repository
+git remote -v
 ```
+
+## Lưu ý quan trọng:
+
+1. **Personal Access Token**: GitHub không còn hỗ trợ password, cần dùng token:
+   - GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token
+   - Quyền: chọn "repo" (full control)
+   - Dùng token thay cho password khi push
+
+2. **Commit message**: Nên viết message rõ ràng, mô tả những thay đổi:
+   - `"Add pause menu feature"`
+   - `"Update UI with new theme system"`
+   - `"Fix bug in scoring calculation"`
+
+3. **Pull trước khi push**: Nếu có người khác đã push code, nên pull trước:
+   ```bash
+   git pull origin main
+   git push origin main
+   ```
 
